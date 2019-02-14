@@ -1,0 +1,4 @@
+pdf/
+graph/*
+!graph/7365.svg
+.vscode
