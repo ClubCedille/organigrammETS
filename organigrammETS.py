@@ -2,6 +2,7 @@ import os
 import sys
 import re
 import PyPDF2
+from datetime import datetime
 from graphviz import Digraph
 
 BACHELORS = {
@@ -62,9 +63,13 @@ def run():
                     courses = mergeCourses(courses, parseCourses(pageIndex, pdf))
 
                 dot = getDotFile(courses)
-                dot.graph_attr = {'label':BACHELORS[bachelorCode]}
-                #Generate the dot file then the SVG
-                dot.render('graph/'+bachelorCode, view=False, cleanup=True, format='svg')
+                timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+                if bachelorCode.startswith('7'):
+                    dot.graph_attr = {'label':BACHELORS[bachelorCode]}
+                    #Generate the dot file then the SVG
+                    dot.render('graph/'+bachelorCode+timestamp, view=False, cleanup=True, format='svg')
+                else:
+                    dot.render('graph/organigramme-'+timestamp, view=False, cleanup=True, format='svg')
             else:
                 print('File: {} is not found'.format(filePath))
 
