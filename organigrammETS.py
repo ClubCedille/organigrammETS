@@ -49,7 +49,7 @@ def getDotFile(courses):
 def run():
     argsLen = len(sys.argv)
     if argsLen  > 1:
-        for fileIndex in range(1, argsLen-1):
+        for fileIndex in range(1, argsLen):
             filePath = sys.argv[fileIndex]
             if os.path.isfile(filePath): 
                 file = open(filePath, 'rb')
